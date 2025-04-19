@@ -10,6 +10,10 @@ Fundamentally we need to:
 * Verify which of these files still crash
 
 Methods to profile against each other:
+Honggfuzz:
+    - Base honggfuzz works great
+    - cargo install honggfuzz may be useful for calling magika rust
+
 Atheris:
     - Build clang for Atheris
     - Python harness to instantiate Magik model
