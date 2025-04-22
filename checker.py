@@ -4,7 +4,8 @@ import os
 import shutil
 import magika
 
-OUTDIR = '/tmp/ramdisk'
+#OUTDIR = '/tmp/ramdisk'
+OUTDIR = '/home/user/projects/madoka/c'
 
 SUCCESS_DIR = '/home/user/projects/madoka/polyglots'
 
@@ -16,8 +17,9 @@ for root, dirs, files in os.walk(OUTDIR):
         res = m.identify_path(filepath)
         
         if res.output.label == 'elf':
-            pass
-            #os.remove(filepath)
+            # If the output files are still identified as ELF,
+            #   we're not interested because they are correctly classified
+            os.remove(filepath)
 
         else:
             print("%s:%s" % (filepath,res.output.label))
