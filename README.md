@@ -1,6 +1,6 @@
 # Madoka
 
-A harness for adversarial testing of Magika
+A fuzzing harness for adversarial testing of Google's Magika AI-based file classifier.
 
 ## Introduction
 
@@ -10,8 +10,21 @@ Compounding this problem is the gap between what a specification states is a val
 
 To this end, Madoka is a barebones harness to use file mutation and fuzzing to produce output files that are incorrectly classified by Magika (or other static signatures) yet are still interpreted as valid by a target process.
 
+## Prerequisites
+
+* Honggfuzz
+* Magika
+
 ## How to deploy the ELF fuzzer/polyglot finder
 
+Included with Magika is an ELF fuzzer that mutates a known crashing binary. If we can create a variant of this file that is not classified as an ELF, but still crashes, we've succeeded in evading the classifier!
+
+* In the `test` directory, run `make` to compile the example binaries.
+* Copy `crasher` to a directory called `input`
+* (Optional) Use a script in the `util` directory to create a RAMdisk
+* Copy the checkout to a directory where you're going to execute the fuzzing cases
+* Run `./inputgen.sh`
+* Run `./checker.py` with the output directory to find if any of these files successfully evade Magika
 
 
 ## Methodology
