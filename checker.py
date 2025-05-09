@@ -5,7 +5,7 @@ import shutil
 import magika
 
 #OUTDIR = '/tmp/ramdisk'
-OUTDIR = '/home/user/projects/madoka/c'
+OUTDIR = '/home/user/projects/madoka/crashes_needtriage'
 
 SUCCESS_DIR = '/home/user/projects/madoka/polyglots'
 
