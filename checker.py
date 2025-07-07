@@ -5,7 +5,8 @@ import shutil
 import magika
 
 #OUTDIR = '/tmp/ramdisk'
-OUTDIR = '/home/user/projects/madoka/crashes_needtriage'
+#OUTDIR = '/home/user/projects/madoka/c'
+OUTDIR = '/tmp/ramdisk/crashes'
 
 SUCCESS_DIR = '/home/user/projects/madoka/polyglots'
 
@@ -19,10 +20,11 @@ for root, dirs, files in os.walk(OUTDIR):
         if res.output.label == 'elf':
             # If the output files are still identified as ELF,
             #   we're not interested because they are correctly classified
+            print("File %s still classified as ELF, deleting..." % filepath)
             os.remove(filepath)
 
         else:
-            print("%s:%s" % (filepath,res.output.label))
+            print("Found polyglot %s:%s" % (filepath,res.output.label))
             shutil.copy(filepath, os.path.join(SUCCESS_DIR,f))
             #raise Exception("WAOOO IT'S NOT AN ELF ACCORDING TO MAGIKA?!")
         #print(f)
